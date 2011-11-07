@@ -1,1 +1,9 @@
 babysmile.dp.ua site engine and backend system
+
+SYSTEM REQUIREMENTS
+___________________
+
+PHP >= 5.2.5
+Smarty 2 (put into "smarty" folder)
+PEAR: HTML_QuickForm, HTTP_Download, HTTP_Upload, Mail, Mail_mime, Pager
+Zend Framework: Zend_Auth and Zend_Acl with theirs dependencies
