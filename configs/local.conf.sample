@@ -1,0 +1,10 @@
+﻿; Конфигурационный файл параметров на сервере
+; (база данных, кодировки и др.)
+
+[DATABASE]
+dbtype = mysql
+host = localhost
+username = root
+password = 
+dbname = babysmile
+table_prefix = ""
