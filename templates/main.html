@@ -9,30 +9,30 @@
     <link rel="stylesheet" type="text/css" href="/js/jquery.ui/css/custom-theme/jquery-ui-1.8.12.custom.css" />
 	<link rel="icon" href="/favicon.ico" type="image/x-icon" />
     <title>{$page->getTitle()} :: Babysmile</title>
-    
+
     <script type="text/javascript" src="/js/jquery.js"></script>
 	<script type="text/javascript" src="/js/jquery.ui/jquery-ui-1.8.12.custom.min.js"></script>
-	
+
 	<script type="text/javascript" src="/js/shop_cart.js"></script>
 	<script type="text/javascript" src="/js/common.js"></script>
-	
-	{literal}	
-	<script type="text/javascript"> 
-	var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www."); 
-	document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E")); 
-	</script> 
-	<script type="text/javascript"> 
-	try { 
-	var pageTracker = _gat._getTracker("UA-5639349-2"); 
-	pageTracker._trackPageview(); 
+
+	{literal}
+	<script type="text/javascript">
+	var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+	document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+	</script>
+	<script type="text/javascript">
+	try {
+	var pageTracker = _gat._getTracker("UA-5639349-2");
+	pageTracker._trackPageview();
 	} catch(err) {}</script>
-	
+
 	<!--[if lt IE 7]>
 	<![if gte IE 5.5]>
 	<script type="text/javascript" src="/js/fixMinWidth.js"></script>
 	<script type="text/javascript" src="/js/fixpng.js"></script>
-	<style type="text/css"> 
-	.iePNG, IMG { filter:expression(fixPNG(this)); } 
+	<style type="text/css">
+	.iePNG, IMG { filter:expression(fixPNG(this)); }
 	.iePNG A { position: relative; }
 	</style>
 	<![endif]>
@@ -58,10 +58,10 @@
     <!-- Header menu START -->
     {include file='../templates/template_parts/main_menu.html'}
     <!-- Header menu END -->
-	
+
 	{foreach from=$page->getConfigValue('CENTER_COLUMN') item=template_info}
 		{include file=$template_info.file params=$template_info}
-	{/foreach}        
+	{/foreach}
 
     <!-- Double text START -->
     <div id="double_text">
@@ -70,7 +70,7 @@
 		{/foreach}
     </div>
     <!-- Double text END -->
-    
+
     <!-- Footer START -->
     <div id="footer">
     	&copy; Baby Smyle 2008-{$smarty.now|date_format:"%Y"}

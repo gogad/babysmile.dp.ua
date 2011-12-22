@@ -1,4 +1,4 @@
-﻿<!-- Header icons START -->
+<!-- Header icons START -->
 <script type="text/javascript" src="/js/userEnter.js"></script>
 <div id="header_icons">
 	{if $user->getState() eq 'login'}
@@ -21,14 +21,25 @@
 		</form>
 	{/if}
 	<a href="/cart" title="Моя корзина" class="cart">
-		<img src="/images/header_logos/logo_2.png" alt="" width="45" height="59" />		
-		<span>{if $user->getCartCount() neq 0}{$user->getCartCount()}{/if}&nbsp;</span>		
+		<img src="/images/header_logos/logo_2.png" alt="" width="45" height="59" />
+		<span>{if $user->getCartCount() neq 0}{$user->getCartCount()}{/if}&nbsp;</span>
 	</a>
 	<a href="#" class="search" title="Поиск по сайту"><img src="/images/header_logos/logo_3.png" alt="" width="38" height="59" /></a>
 	<form id="formSearch" class="standart modal" method="get" action="/search" title="Поиск по сайту">
 		<label>Ключевые слова: <input type="text" name="words" />
 		</label>
 	</form>
-	<a href="mailto:info@babysmile.dp.ua" title="Написать нам письмо"><img src="/images/header_logos/logo_4.png" alt="" width="51" height="59" /></a>
+	<script type="text/javascript" src="/js/mailform.js"></script>
+	<a href="mailto:babysmile@ua.fm" title="Написать нам письмо" id="mailform"><img src="/images/header_logos/logo_4.png" alt="" width="51" height="59" /></a>
+	<form id="formEnter1" class="standart modal" method="post" action="/enter" title="Вход на сайт">
+	        <p></p>
+			<label>
+				<span class="switchable ">E-mail:
+				<input type="text" name="email" /></span>
+			</label>
+			<label>
+			<textarea name="mailText" rows=5 cols=20 wrap="off" >введите текст письма...</textarea>
+			</label>
+	</form>
 </div>
 <!-- Header icons END -->
