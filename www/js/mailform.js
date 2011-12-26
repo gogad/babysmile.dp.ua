@@ -1,6 +1,6 @@
 $(document).ready(function() {
 	$("#mailform").click(function(){        $('#formEnter1').dialog('open');		return false;	});
-});
+    $("#formEnter1 textarea").click(function(){    	$(this).text("");    });});
 $(function() {
 
 	$('#formEnter1').dialog({
