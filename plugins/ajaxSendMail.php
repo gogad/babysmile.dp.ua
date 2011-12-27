@@ -19,7 +19,7 @@ function ajaxSendMail($page)
 
 
 		$response['noerror'] = mail($admMail, $Subjmail , $text , $headers );
-		if($response['noerror']!= false)$response['error']= "письмо отправлено закройте окошко.";
+		if($response['noerror']!= false)$response['error']= "Ваше письмо отправлено,мы вам ответим в ближайшее время.";
 		else $response['error']= "письмо не отправлено временные неполадки";
 		}
         if(!$mail)$response['error']= "неправильный емаил.";

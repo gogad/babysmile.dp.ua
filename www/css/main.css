@@ -17,11 +17,11 @@ form#userInfo #btnSubmit { margin:10px 0; }
 
 #header {width:932px; margin:0 auto; height:153px; overflow:hidden; background: url(../images/beta.gif) left top no-repeat;}
 	#header_logo {float:left; padding:51px 0 0 0}
-	
+
 	#header_slogan {float:right; padding:41px 17px 0 0; font-size: 120%; font-weight: bold;}
-	
+
 	#header_slogan_inner {float:right; padding:50px 26px 0 0}
-	
+
 	#header_icons {float:right; padding:36px 81px 0 0; overflow:hidden; position: relative;}
 		#header_icons a {float:left; text-decoration:none}
 		#header_icons a.cart { position: relative; }
@@ -42,7 +42,7 @@ form#userInfo #btnSubmit { margin:10px 0; }
 	#header_menu a:hover {background-color:#ffebcd; border:solid 1px #d1ae83; margin:0; text-decoration:none}
 	#header_menu li.current a {color:#624199}
 	#header_menu li.current a:hover {background-color:transparent; border:none; margin:1px}
-	
+
 #header_submenu {text-align:center; font-size:13px; margin:6px 0 0 0}
 	#header_submenu li {display:inline}
 	#header_submenu li:first-child {background:none}
@@ -50,7 +50,7 @@ form#userInfo #btnSubmit { margin:10px 0; }
 	#header_submenu a:hover {background-color:#ffebcd; border:solid 1px #d1ae83; margin:0; text-decoration:none}
 	#header_submenu li.current a {color:#624199}
 	#header_submenu li.current a:hover {background-color:transparent; border:none; margin:1px}
-	
+
 #header_subsubmenu {font-size:13px; margin:16px -7px 0 -7px; background-color:#ffebcd; padding:7px}
 	#header_subsubmenu li {display:inline}
 	#header_subsubmenu li:first-child {background:none}
@@ -126,7 +126,7 @@ form#userInfo #btnSubmit { margin:10px 0; }
 		#news div.content ul li {margin:9px 0 10px 0}
 		#news div.content ul a {background-image:url(../images/news_list_bg.gif); background-repeat:no-repeat; padding:0 0 0 25px; color:#231f20}
 		#news div.content ul span {color:#624199; margin:0 7px 0 0}
-		
+
 #articles {margin:17px 0 0 0}
 	#articles h1 {text-align:right; color:#ddc6ab; padding:0 12px 0 0; line-height:40px}
 	#articles div.content {border-top:solid 9px #d5b997; font-family:Arial, Helvetica, sans-serif; overflow:hidden}
@@ -136,7 +136,7 @@ form#userInfo #btnSubmit { margin:10px 0; }
 		#articles div.content li {margin:9px 0 10px 0}
 		#articles div.content a {background-image:url(../images/articles_list_bg.gif); background-repeat:no-repeat; background-position:0 50%; padding:0 0 0 35px; color:#231f20}
 
-		
+
 
 #cart {margin:2px 0 0 0}
 	#cart h1 {text-align:right; padding:0 12px 0 0; line-height:40px}
@@ -166,10 +166,10 @@ form#userInfo #btnSubmit { margin:10px 0; }
 #list {margin:7px 0 0 0}
 	#list h1.first {text-align:right}
 	#list h1.no_mar {margin:-20px 0 -10px 23px}
-	
+
 	#list div.filter_sum {border:solid 8px #c0b5d8; padding:7px 15px; background-color:#FFF; margin:0 20px 13px 20px; color:#624199; letter-spacing:-0.5px}
 		#list div.filter_sum span {color:#231f20; margin:0 10px 0 0}
-		
+
 	#list div.filter_double {overflow:hidden; margin:0 20px 13px 20px; color:#624199}
 		#list div.filter_double span {color:#231f20}
 		#list div.filter_double div.left {float:left; width:490px; height:26px; padding:6px 20px 0 15px; border:solid 8px #c0b5d8; background-color:#FFF}
@@ -179,7 +179,7 @@ form#userInfo #btnSubmit { margin:10px 0; }
 			#list div.filter_double div.right a {background-repeat:no-repeat; background-position:100% 50%; display:block; color:#624199}
 			#list div.filter_double div.right a.down {background-image:url(../images/filter_arrow_down.gif)}
 			#list div.filter_double div.right a.up {background-image:url(../images/filter_arrow_up.gif)}
-			
+
 	#list div.row {overflow:hidden; margin:28px 0 0 0; padding:0 0 24px 10px; background-image:url(../images/triple_center_bg.gif); background-repeat:no-repeat; background-position:50.4% 10px; border-bottom:solid 9px #ffebcd}
 	#list div.row_no_bg {background:none}
 	#list div.block {float:left; overflow:hidden; width:236px; margin:0 10px; text-align:center}
@@ -189,15 +189,15 @@ form#userInfo #btnSubmit { margin:10px 0; }
 			#list div.block div.link a:hover {text-decoration:underline}
 		#list div.block div.info {padding:5px 0 0 0; font-size:13px; color:#808184}
 		#list div.block div.price {color:#ae793c; font-size:25px}
-		
+
 #list_group {}
 	#list_group h1.first {text-align:right; margin:10px 0 -10px 0; color:#d5b997}
-	
+
 	#list_group div.top {overflow:hidden; margin:0 15px; background-image:url(../images/list_group_top_bg.gif); background-repeat:no-repeat; background-position:50% 50%}
 		#list_group div.top div.left {float:left}
 		#list_group div.top div.right {float:right}
 		#list_group div.top img {border:solid 9px #d5b997}
-		
+
 	#list_group div.row {overflow:hidden; margin:28px 0 0 0; padding:0 0 24px 10px; background-image:url(../images/triple_center_bg.gif); background-repeat:no-repeat; background-position:50.4% 10px; border-bottom:solid 9px #ffebcd}
 	#list_group div.row_no_bg {background:none}
 	#list_group div.block {float:left; overflow:hidden; width:236px; margin:0 10px; text-align:center}
@@ -207,7 +207,7 @@ form#userInfo #btnSubmit { margin:10px 0; }
 
 #item {}
 	#item h1.first {text-align:right; margin:6px 0 -10px 0; color:#d4babd}
-	
+
 	#item div.item_top {overflow:hidden; padding:30px 0 0 0}
 		#item div.item_top div.carousel {float:left; width:424px; height:318px; background-color:#d5b997; position:relative}
 			#item div.item_top div.carousel a.prev, #item div.item_top div.carousel a.next {background-image:url(../images/item_item_top_arrows_shape.gif); width:20px; height:40px; overflow:hidden; position:absolute; top:135px}
@@ -223,16 +223,16 @@ form#userInfo #btnSubmit { margin:10px 0; }
 			#item div.item_top div.text span.old_price {text-decoration: line-through; color:grey; font-weight:bold;}
 			#item div.item_top div.text a.violet {color:#624199}
 			#item div.item_top div.text div.buy {padding:5px 0 0 0}
-	
+
 	#item div.item_species {}
 		#item div.item_species h1 {color:#ddc6ab}
 		#item div.item_species ul {overflow:hidden; border-left:solid 7px #d5b997}
 			#item div.item_species li {border:solid #d5b997; border-width:7px 7px 7px 0; float:left}
 			#item div.item_species img {display:block}
-			
+
 	#item div.item_descr {border-bottom:solid 9px #ffebcd; padding:0 0 10px 0}
 		#item div.item_descr h1 {color:#ddc6ab; border-bottom:solid 9px #ffebcd; padding:0 0 6px 0; margin:0 0 10px 0}
-		
+
 	#item div.item_similar {}
 		#item div.item_similar h1 {text-align:right; padding:0 15px 0 0}
 		#item div.item_similar div.row {overflow:hidden; margin:10px 0 0 0; padding:0 0 24px 10px; background-image:url(../images/triple_center_bg.gif); background-repeat:no-repeat; background-position:50.4% 10px}
@@ -244,15 +244,15 @@ form#userInfo #btnSubmit { margin:10px 0; }
 				#item div.item_similar div.block div.link a:hover {text-decoration:underline}
 			#item div.item_similar div.block div.info {padding:5px 0 0 0; font-size:13px; color:#808184}
 			#item div.item_similar div.block div.price {color:#ae793c; font-size:25px}
-			
+
 	#item div.item_comments {border-top:solid 9px #c0b5d8; padding:10px 0 0 0}
 		#item div.item_comments h1 {text-align:right; padding:0 15px 27px 0}
-		
+
 		#item div.item_comments div.block {padding:0 20px 12px 20px; border-bottom:solid 9px #ffebcd; margin:0 0 12px 0}
 			#item div.item_comments div.block div.name {font-size:21px; color:#ae793c; padding:0 0 3px 0}
 			#item div.item_comments div.block div.text {}
 			#item div.item_comments div.add_comment {text-align:center; padding:26px 0 0 0}
-	
+
 
 
 #footer {height:115px; border-top:solid 9px #d5b997; text-align:center; margin:9px 0 0 0; font-size:16px; color:#ae793c; padding:20px 0 0 0}
@@ -271,7 +271,7 @@ ul.pages {text-align:center; margin:20px 0 32px 0; font-size:23px}
 #mask {background:#000; display:block; position:fixed; width:100%; height:100%; left:0px; top:0px; z-index:10; opacity:.4; filter:progid:DXImageTransform.Microsoft.Alpha(opacity=40)}
 
 #filterControls { display: none; }
-	
+
 #filters {position:absolute; width:680px; padding:7px 35px 35px 20px; border:solid 8px #c0b5d8; z-index:11; background-color:#FFF; top:313px; left:50%; margin:0 0 0 -373px}
 	#filters h1 {color:#e5d9ea; text-align:right}
 	#filters div.status { background:#e5d9ea; text-align:center; width:60%; font-size:80%; font-weight:bold; position: absolute; top:15px; left:15%px; -moz-border-radius:10px; opacity:0.6; }
