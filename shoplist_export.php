@@ -1,14 +1,13 @@
 <?php
 
-$logger = fopen('/var/www/babysmile/babysmile.dp.ua/shoplist.log','a+');
-fwrite($logger,date('Y-m-d H:i:s').' - start'.PHP_EOL);
-
-
 error_reporting(E_ALL);
 ini_set('display_errors','On');
 
+$logger = fopen(dirname(__FILE__) . '/shoplist.log','a+');
+fwrite($logger,date('Y-m-d H:i:s').' - start'.PHP_EOL);
+
 require_once 'libs/DbSimple/Generic.php';
-$db = DbSimple_Generic::connect('mysql://u_babysmile:mWQbGNMu@localhost/babysmile');
+$db = DbSimple_Generic::connect('mysql://babysmil_site:6QzU31Kxfz34@localhost/babysmil_main');
 //$db = DbSimple_Generic::connect('mysql://root@localhost/babysmile');
 $db->query('SET NAMES CP1251');
 
@@ -28,7 +27,7 @@ $count = $db->selectCell('
       JOIN goods g ON g.id = i.id
       WHERE i.type = ? AND i.protected=0 AND g.price>0','good');
 
-$f = fopen('/var/www/babysmile/babysmile.dp.ua/shoplist.csv', 'w+');
+$f = fopen(dirname(__FILE__) . '/public_html/shoplist.csv', 'w+');
 for ($i=2;$i<=8;$i++) {
     $cols[] = 'col'.$i;
 }
@@ -56,7 +55,7 @@ foreach ($goods as $item) {
 fclose($f);
 
 // write to log
-$f = fopen('/var/www/babysmile/cron.log', 'a');
+$f = fopen(dirname(__FILE__) . '/cron.log', 'a');
 fwrite($f,date('Y-m-d H:i:s').' - Job for "shoplist" export finished. '.$count.' goods were added'.PHP_EOL);
 fclose($f);
 
