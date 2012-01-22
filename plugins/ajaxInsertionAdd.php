@@ -5,7 +5,7 @@ require_once 'classes/Library/Images.php';
 require_once 'Mail.php';
 require_once 'Mail/mime.php';
 
-function ajax_insertion_add () {
+function ajaxInsertionAdd() {
     
 	ini_set("display_errors","Off");
 	

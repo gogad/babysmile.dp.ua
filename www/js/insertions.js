@@ -16,7 +16,7 @@ $(document).ready(function() {
 	});
 	
 	var options = {
-		url: '/ajax/insertion/add',
+		url: '?pname=ajaxInsertionAdd',
 		beforeSend: function(XMLHttpRequest) {
 			$("#btnSubmit").attr("disabled","disabled");
 			$("#btnSubmit").val("");
@@ -65,7 +65,7 @@ $(document).ready(function() {
 	date = new Date();
 	$("#insertionForm input[name='date']").datepicker({ 
 		showOn: "both", 
-		buttonImage: "/i/calendar.gif", 
+		buttonImage: "/images/calendar.png", 
 		buttonImageOnly: true,
 		minDate: "0d",
 		maxDate: "3m",

@@ -1,0 +1,21 @@
+{assign var="v" value=$page->getInsertion()}
+
+<div>
+	<h1>Просмотр объявления</h1>
+	{if $v}
+		<script type="text/javascript" language="javascript" src="/js/lytebox/lytebox.js"></script>
+		<link rel="stylesheet" href="/js/lytebox/lytebox.css" type="text/css" media="screen" />				
+		
+		<div class="insertion_item">
+			<div><span class="color-pink">{$v->type_name}</span> {$v->text} <a href="{$v->url}" title="Постоянная ссылка на объявление"><img src="/i/hyperlink.gif" /></a></div>
+			<div><span class="color-blue">Регион:</span> {$v->region_name}</div>
+			<div><span class="color-blue">Контактное лицо:</span> {$v->author}</div>
+			<div><span class="color-blue">Телефон:</span> {$v->phone}</div>				
+			{foreach from=$v->getPhotos() item=photo}
+				<a href="/i/insertions/{$photo}" rel="lytebox[{$v->id}]"><img src="/i/camera-all.png" /></a>
+			{/foreach}				
+		</div>
+	{else}
+		Объявление не прошло проверку либо истек срок действия
+	{/if}
+</div>

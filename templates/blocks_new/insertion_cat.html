@@ -1,0 +1,143 @@
+<div>
+	{if $smarty.get.action eq 'add'}
+		<script type="text/javascript" src="/js/jquery.autogrowtextarea.js"></script>
+	    <script type="text/javascript" src="/js/jquery.ui/jquery.ui.datepicker-ru.js"></script>
+			
+		<script type="text/javascript" src="/js/jquery.form.js"></script>
+		<script type="text/javascript" src="/js/insertions.js"></script>
+	    
+	    {literal}
+	    <script type="text/jscript">
+			$(function() {	
+				$('textarea').autoGrow();
+			});
+		</script>
+	    {/literal}
+	    
+	    <h1>Добавление объявления в категорию <span class="color-blue">&#8220;{$page->getName()}&#8221;</span></h1>
+	    <form id="insertionForm" method="post" action="{$page->getUrl()}" enctype="multipart/form-data">
+	    <input type="hidden" name="pid" value="{$page->getId()}" />
+	    <table class="insertion">
+	      <tr>
+	        <td class="right"><label for="type">Тип объявления</label>:</td>
+	        <td class="left">
+	            <select name="type">
+	            	{foreach from=$page->getInstypes() item=v}
+	                	<option value="{$v.id}">{$v.name}</option>
+	                {/foreach}
+	            </select>
+	         </td>
+	      </tr>
+	      <tr>
+	        <td class="right"><label for="region">Регион</label>:</td>
+	        <td class="left">
+	            <select name="region">
+	            	{foreach from=$page->getRegions() item=v}
+	                	<option value="{$v.id}">{$v.name}</option>
+	                {/foreach}
+	            </select>
+	        </td>
+	      </tr>
+	      <tr>
+	        <td class="right"><label for="author">Контактное лицо</label>: </td>
+	        <td class="left"><input type="text" name="author" maxlength="100" /></td>
+	      </tr>
+	      <tr>
+	        <td class="right"><label for="phone">Телефон</label></td>
+	        <td class="left"><input type="text" name="phone" maxlength="100" /></td>
+	      </tr>
+	      <tr>
+	        <td class="right"><label for="email">E-mail</label>:</td>
+	        <td class="left"><input type="text" name="email" maxlength="100" /></td>
+	      </tr>
+	      <tr>
+	        <td class="right"><label for="text">Текст объявления</label>: </td>
+	        <td class="left">
+	        	<textarea maxlength="1000" rows="10" cols="30" class="expanding" name="text"></textarea>
+	        	<div class="status">Максимум 1000 символов</div>
+	        </td>
+	      </tr>
+	      <tr>
+	        <td class="right"><label for="date">Дата актуальности</label>:</td>
+	        <td class="left"><input type="text" name="date" readonly="true" maxlength="100" /></td>
+	      </tr>
+	      <tr>
+	        <td class="right"><label for="photo[]">Фото</label>:</td>
+	        <td class="left"><input type="file" name="photo[]" /></td>
+	      </tr>
+	      <tr>
+	        <td class="right">&nbsp;</td>
+	        <td class="left"><img title="Добавить фотографию" alt="добавить фото" id="add_photo" src="/images/add.png" /></td>
+	      </tr>
+	    </table>
+	    <input id="btnSubmit" type="submit" name="add" value="Добавить объявление" />
+	    {*<input id="btnReset" type="reset" name="reset" value="Очистить" />*}
+		<input id="btnPreview" type="button" name="preview" value="Предпросмотр" />
+	    <div id="debug"></div>
+	    </form>
+		<div id="preview">
+			<div class="insertion_item">
+	        	<div class="close"></div>
+				<div><span class="color-pink" id="type_name"></span> <span id="text"></span></div>
+				<div><span class="color-blue">Регион:</span> <span id="region_name"></span></div>
+				<div><span class="color-blue">Контактное лицо:</span> <span id="author"></span></div>
+				<div><span class="color-blue">Телефон:</span> <span id="phone"></span></div>				
+			</div>
+		</div>
+	    <div id="msgAdded">
+	        Ваше объявление успешно добавлено и будет доступно на сайте после проверки модератором.<br />
+	        О статусе объявления Вы будете проинформированы по электронной почте
+	    </div>
+	{else}
+	
+		{assign var="items" value=$page->getInsertions($params)}
+		
+		<h1>Объявления в категории <span class="color-blue">&#8220;{$page->getName()}&#8221;</span></h1>
+		{if $items || $smarty.get.doFilter}
+	
+			<script type="text/javascript" language="javascript" src="/js/lytebox/lytebox.js"></script>
+			<link rel="stylesheet" href="/js/lytebox/lytebox.css" type="text/css" media="screen" />				
+			
+			<div id="insertions_search">
+			<form action="{$page->getUrl()}" method="get">
+				<label for="region">регион: </label>
+				<select name="region">
+					<option value="0"{if $smarty.get.region eq 0}selected="selected"{/if}>-------------</option>
+					{foreach from=$page->getRegions() item=v}				
+						<option value="{$v.id}"{if $smarty.get.region eq $v.id}selected="selected"{/if}>{$v.name}</option>
+					{/foreach}
+				</select>
+				<label for="type">тип: </label>
+				<select name="type">
+					<option value="0"{if $smarty.get.type eq 0}selected="selected"{/if}>-------------</option>
+					{foreach from=$page->getInstypes() item=v}
+						<option value="{$v.id}"{if $smarty.get.type eq $v.id}selected="selected"{/if}>{$v.name}</option>
+					{/foreach}
+				</select>
+				<label for="текст">текст: </label>
+				<input type="text" name="text" value="{$smarty.get.text|@htmlspecialchars}" />
+				<input type="submit" name="doFilter" value="Применить фильтр" />
+			</form>
+			</div>
+			{foreach from=$items item=v}		
+				<div class="insertion_item">
+					<div style="text-align:right"><em>{$v->create_date}</em></div>
+					<div><span class="color-pink">{$v->type_name}</span> {$v->text} <a href="{$v->url}" title="Постоянная ссылка на объявление"><img src="/i/hyperlink.gif" /></a></div>
+					<div><span class="color-blue">Регион:</span> {$v->region_name}</div>
+					<div><span class="color-blue">Контактное лицо:</span> {$v->author}</div>
+					<div><span class="color-blue">Телефон:</span> {$v->phone}</div>				
+					{foreach from=$v->getPhotos() item=photo}
+						<a href="/i/insertions/{$photo}" rel="lytebox[{$v->id}]"><img src="/i/camera-all.png" /></a>
+					{/foreach}				
+				</div>
+			{foreachelse}   	
+				Не найдено объявлений, удовлетворяющих условиям поиска
+	    	{/foreach}
+		{if isset($params.numerator_name)}
+			{include file='template_parts/page_numerator.html' numerator_name=$params.numerator_name}
+		{/if}
+		{else}
+			Объявления в этой категории отсутствуют
+		{/if}
+	{/if}
+</div>

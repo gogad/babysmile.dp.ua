@@ -1,0 +1,43 @@
+<script type="text/javascript" language="javascript" src="/js/lytebox/lytebox.js"></script>
+<link rel="stylesheet" href="/js/lytebox/lytebox.css" type="text/css" media="screen" />
+
+<div>
+	<h1>Последние объявления</h1>
+	{foreach from=$page->getLastInsertions() item=v}		
+		<div class="insertion_item">
+			<div style="text-align:right"><em>{$v->create_date}</em> <a href="{$v->cat_url}">{$v->cat_name}</a></div>
+			<div><span class="color-pink">{$v->type_name}</span> {$v->text} <a href="{$v->url}" title="Постоянная ссылка на объявление"><img src="/i/hyperlink.gif" /></a></div>
+			<div><span class="color-blue">Регион:</span> {$v->region_name}</div>
+			<div><span class="color-blue">Контактное лицо:</span> {$v->author}</div>
+			<div><span class="color-blue">Телефон:</span> {$v->phone}</div>				
+			{foreach from=$v->getPhotos() item=photo}
+				<a href="/i/insertions/{$photo}" rel="lytebox[{$v->id}]" title="Просмотреть фото"><img src="/i/camera-all.png" alt="фото" /></a>
+			{/foreach}				
+		</div>
+	{/foreach}
+	<table width="90%" border="0" cellpadding="0" cellpadding="0" class="list">
+		{foreach name=cat from=$page->list_inscat($params) item=item}
+			{if $smarty.foreach.cat.iteration%2 neq 0}
+			<tr>
+			{/if}
+				<td width="50%" align="center" valign="top">
+					<p class="name"><a href="{$item->url}">{$item->name}</a> ({$item->c_ins})</p>
+					{if $item->getImage(true)}
+						<table class="image" cellpadding="0" cellspacing="0">
+						  <tr>
+							<td><a href="{$item->url}"><img src="{$item->getImage(true)}" alt="{$item->name}" title="{$item->title}" /></a></td>
+						  </tr>
+						</table>					
+					{/if}
+					<p class="description">{$item->description}</p>				
+					<a href="{$item->url}?action=add" title="Добавить объявление в раздел {$item->name}">Добавить</a>
+				</td>
+		    {if $smarty.foreach.cat.iteration%2 eq 0 || $smarty.foreach.cat.last}
+		    </tr>
+			{/if}
+		{/foreach}
+	</table>
+	{if isset($params.numerator_name)}
+		{include file='template_parts/page_numerator.html' numerator_name=$params.numerator_name}
+	{/if}
+</div>
