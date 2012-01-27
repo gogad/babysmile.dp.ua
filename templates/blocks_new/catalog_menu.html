@@ -4,7 +4,7 @@
 <div id="main_categories">
 	<ul>
 	{foreach name=menu from=$page->catalog_menu($params) item=menu_item}
-    	<li><a href="{$menu_item.url}" class="catalog_category" id="img_{$menu_item.id}" title="{$menu_item.title}">{$menu_item.name}</a></li>
+    	<li><a href="{$menu_item.url}" class="catalog_category" id="img_{$menu_item.id}" {*title="{$menu_item.title}"*}>{$menu_item.name}</a></li>
     {/foreach}
     </ul>
     <div class="pic"><img src="/images/main_categories_image.jpg" id="src_img" alt="" width="515" height="300" /></div>
