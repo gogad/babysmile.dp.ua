@@ -3,7 +3,8 @@
 
 <div>
 	<h1>Последние объявления</h1>
-	{foreach from=$page->getLastInsertions() item=v}		
+	{foreach from=$page->getLastInsertions() item=v}
+		{$v->cat_url}	
 		<div class="insertion_item">
 			<div style="text-align:right"><em>{$v->create_date}</em> <a href="{$v->cat_url}">{$v->cat_name}</a></div>
 			<div><span class="color-pink">{$v->type_name}</span> {$v->text} <a href="{$v->url}" title="Постоянная ссылка на объявление"><img src="/i/hyperlink.gif" /></a></div>
