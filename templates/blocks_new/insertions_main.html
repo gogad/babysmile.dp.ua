@@ -4,15 +4,16 @@
 <div>
 	<h1>Последние объявления</h1>
 	{foreach from=$page->getLastInsertions() item=v}
-		{$v->cat_url}	
 		<div class="insertion_item">
 			<div style="text-align:right"><em>{$v->create_date}</em> <a href="{$v->cat_url}">{$v->cat_name}</a></div>
-			<div><span class="color-pink">{$v->type_name}</span> {$v->text} <a href="{$v->url}" title="Постоянная ссылка на объявление"><img src="/i/hyperlink.gif" /></a></div>
-			<div><span class="color-blue">Регион:</span> {$v->region_name}</div>
-			<div><span class="color-blue">Контактное лицо:</span> {$v->author}</div>
-			<div><span class="color-blue">Телефон:</span> {$v->phone}</div>				
-			{foreach from=$v->getPhotos() item=photo}
-				<a href="/i/insertions/{$photo}" rel="lytebox[{$v->id}]" title="Просмотреть фото"><img src="/i/camera-all.png" alt="фото" /></a>
+			<div><strong>{$v->type_name}</strong> {$v->text} <a href="{$v->url}" title="Постоянная ссылка на объявление"><img src="/images/link.png" /></a></div>
+			<div><strong>Регион:</strong> {$v->region_name}</div>
+			<div><strong>Контактное лицо:</strong> {$v->author}</div>
+			<div><strong>Телефон:</strong> {$v->phone}</div>				
+			{foreach from=$v->getPhotos() item=photo key=index}
+				<a href="/i/insertions/{$photo}" rel="lytebox[{$v->id}]" title="Просмотреть фото № {$index+1}">
+					<img src="/images/photo.png" alt="фото" />
+				</a>
 			{/foreach}				
 		</div>
 	{/foreach}

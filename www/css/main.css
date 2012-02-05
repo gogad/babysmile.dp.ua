@@ -288,3 +288,7 @@ ul.pages {text-align:center; margin:20px 0 32px 0; font-size:23px}
 		#filters div.buttons a {background-color:#c0b5d8; text-align:center; color:#231f20; margin:0 5px; display:inline-block; width:165px; padding:3px 0}
 
 #msgAdded { display: none; }
+	
+#preview {
+	display: none; border: 1px dashed grey; width: 70%; margin-top: 10px; padding: 5px;
+}

@@ -8,19 +8,11 @@ $(document).ready(function() {
 	
 	formReset();
 	
-	$('#insertionForm').submit(function() { 
-		// submit the form 
-		//$(this).ajaxSubmit(); 
-		// return false to prevent normal browser submit and page navigation 
-		return false; 
-	});
-	
 	var options = {
-		url: '?pname=ajaxInsertionAdd',
+		iframe: true,
 		beforeSend: function(XMLHttpRequest) {
 			$("#btnSubmit").attr("disabled","disabled");
-			$("#btnSubmit").val("");
-			$("#btnSubmit").css("background-image","url(/i/ajax-loader.gif)");
+			$("#btnSubmit").val("Добавление...");
 			$("#insertionForm td").css("border","none");
 		},
 		success: function(data, statusText) {
@@ -29,6 +21,7 @@ $(document).ready(function() {
 				alert(data.error_msg);
 				formReset();
 			} else {
+				$('div.insertion_item').hide();
 				$("#insertionForm").animate(
 					{width:0,height:0,opacity:0},1500,
 					function() {
@@ -81,8 +74,9 @@ $(document).ready(function() {
 		$("#preview").fadeIn();
 	});
 	
-	$("#preview .close").click(function() {
+	$("#preview .close a").click(function() {
 		$("#preview").fadeOut();
+		return false;
 	});
 	
 });

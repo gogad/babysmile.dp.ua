@@ -15,73 +15,73 @@
 	    {/literal}
 	    
 	    <h1>Добавление объявления в категорию <span class="color-blue">&#8220;{$page->getName()}&#8221;</span></h1>
-	    <form id="insertionForm" method="post" action="{$page->getUrl()}" enctype="multipart/form-data">
-	    <input type="hidden" name="pid" value="{$page->getId()}" />
-	    <table class="insertion">
-	      <tr>
-	        <td class="right"><label for="type">Тип объявления</label>:</td>
-	        <td class="left">
-	            <select name="type">
-	            	{foreach from=$page->getInstypes() item=v}
-	                	<option value="{$v.id}">{$v.name}</option>
-	                {/foreach}
-	            </select>
-	         </td>
-	      </tr>
-	      <tr>
-	        <td class="right"><label for="region">Регион</label>:</td>
-	        <td class="left">
-	            <select name="region">
-	            	{foreach from=$page->getRegions() item=v}
-	                	<option value="{$v.id}">{$v.name}</option>
-	                {/foreach}
-	            </select>
-	        </td>
-	      </tr>
-	      <tr>
-	        <td class="right"><label for="author">Контактное лицо</label>: </td>
-	        <td class="left"><input type="text" name="author" maxlength="100" /></td>
-	      </tr>
-	      <tr>
-	        <td class="right"><label for="phone">Телефон</label></td>
-	        <td class="left"><input type="text" name="phone" maxlength="100" /></td>
-	      </tr>
-	      <tr>
-	        <td class="right"><label for="email">E-mail</label>:</td>
-	        <td class="left"><input type="text" name="email" maxlength="100" /></td>
-	      </tr>
-	      <tr>
-	        <td class="right"><label for="text">Текст объявления</label>: </td>
-	        <td class="left">
-	        	<textarea maxlength="1000" rows="10" cols="30" class="expanding" name="text"></textarea>
-	        	<div class="status">Максимум 1000 символов</div>
-	        </td>
-	      </tr>
-	      <tr>
-	        <td class="right"><label for="date">Дата актуальности</label>:</td>
-	        <td class="left"><input type="text" name="date" readonly="true" maxlength="100" /></td>
-	      </tr>
-	      <tr>
-	        <td class="right"><label for="photo[]">Фото</label>:</td>
-	        <td class="left"><input type="file" name="photo[]" /></td>
-	      </tr>
-	      <tr>
-	        <td class="right">&nbsp;</td>
-	        <td class="left"><img title="Добавить фотографию" alt="добавить фото" id="add_photo" src="/images/add.png" /></td>
-	      </tr>
-	    </table>
-	    <input id="btnSubmit" type="submit" name="add" value="Добавить объявление" />
-	    {*<input id="btnReset" type="reset" name="reset" value="Очистить" />*}
-		<input id="btnPreview" type="button" name="preview" value="Предпросмотр" />
-	    <div id="debug"></div>
+	    <form id="insertionForm" method="post" action="{$page->getUrl()}?pname=ajaxInsertionAdd" enctype="multipart/form-data">
+		    <input type="hidden" name="pid" value="{$page->getId()}" />
+		    <table class="insertion">
+		      <tr>
+		        <td class="right"><label for="type">Тип объявления</label>:</td>
+		        <td class="left">
+		            <select name="type">
+		            	{foreach from=$page->getInstypes() item=v}
+		                	<option value="{$v.id}">{$v.name}</option>
+		                {/foreach}
+		            </select>
+		         </td>
+		      </tr>
+		      <tr>
+		        <td class="right"><label for="region">Регион</label>:</td>
+		        <td class="left">
+		            <select name="region">
+		            	{foreach from=$page->getRegions() item=v}
+		                	<option value="{$v.id}">{$v.name}</option>
+		                {/foreach}
+		            </select>
+		        </td>
+		      </tr>
+		      <tr>
+		        <td class="right"><label for="author">Контактное лицо</label>: </td>
+		        <td class="left"><input type="text" name="author" maxlength="100" /></td>
+		      </tr>
+		      <tr>
+		        <td class="right"><label for="phone">Телефон</label></td>
+		        <td class="left"><input type="text" name="phone" maxlength="100" /></td>
+		      </tr>
+		      <tr>
+		        <td class="right"><label for="email">E-mail</label>:</td>
+		        <td class="left"><input type="text" name="email" maxlength="100" /></td>
+		      </tr>
+		      <tr>
+		        <td class="right"><label for="text">Текст объявления</label>: </td>
+		        <td class="left">
+		        	<textarea maxlength="1000" rows="10" cols="30" class="expanding" name="text"></textarea>
+		        	<div class="status">Максимум 1000 символов</div>
+		        </td>
+		      </tr>
+		      <tr>
+		        <td class="right"><label for="date">Дата актуальности</label>:</td>
+		        <td class="left"><input type="text" name="date" readonly="true" maxlength="100" /></td>
+		      </tr>
+		      <tr>
+		        <td class="right"><label for="photo[]">Фото</label>:</td>
+		        <td class="left"><input type="file" name="photo[]" /></td>
+		      </tr>
+		      <tr>
+		        <td class="right">&nbsp;</td>
+		        <td class="left"><img title="Добавить фотографию" alt="добавить фото" id="add_photo" src="/images/add.png" /></td>
+		      </tr>
+		    </table>
+		    <input id="btnSubmit" type="submit" name="add" value="Добавить объявление" />
+		    {*<input id="btnReset" type="reset" name="reset" value="Очистить" />*}
+			<input id="btnPreview" type="button" name="preview" value="Предпросмотр" />
+		    <div id="debug"></div>
 	    </form>
 		<div id="preview">
 			<div class="insertion_item">
-	        	<div class="close"></div>
-				<div><span class="color-pink" id="type_name"></span> <span id="text"></span></div>
-				<div><span class="color-blue">Регион:</span> <span id="region_name"></span></div>
-				<div><span class="color-blue">Контактное лицо:</span> <span id="author"></span></div>
-				<div><span class="color-blue">Телефон:</span> <span id="phone"></span></div>				
+	        	<div class="close"><a href="#" title="Скрыть"><img src="/images/delete.png" /></a></div>
+				<div><strong id="type_name"></strong> <span id="text"></span></div>
+				<div><strong>Регион:</strong> <span id="region_name"></span></div>
+				<div><strong>Контактное лицо:</strong> <span id="author"></span></div>
+				<div><strong>Телефон:</strong> <span id="phone"></span></div>				
 			</div>
 		</div>
 	    <div id="msgAdded">

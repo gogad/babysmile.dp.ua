@@ -1033,11 +1033,14 @@ class current_page extends page
 		return $numerator;
 	}
 	
-//	function __get($name)
-//	{
-//		if (isset($this->modules_params[$name])) return $this->modules_params[$name];
-//		else throw new Exception('Get parameters for not exist module '.$name);
-//	}
+	public function __get($name) {
+	    
+	    if (array_key_exists($name,$this->additional_attr)) {
+	        return $this->additional_attr[$name];
+	    }
+	    throw new Exception("Page parameter $name does not exist");
+	    
+	}
 	
 	function __call($name,$params)
 	{
@@ -1197,7 +1200,7 @@ class current_page extends page
 		//$smarty->assign('main_config',new main_config());// надоело коряво статический объект из смарти вызывать...
 		if (config::getDefaultLang()!='') $smarty->assign('langs',config::getLangs());
 		// --------------- обработка ajax вызовов в среде текущей страницы
-		if((isset($_SERVER['HTTP_X_REQUESTED_WITH']) && $_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest')) 
+		if((isset($_SERVER['HTTP_X_REQUESTED_WITH']) && $_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest') || (!empty($_FILES) && isset($_GET['pname']))) 
 		{
 			if (isset($_GET['pname'])) //вызов непосредственно плагина по имени (предполагается что плагин будет чето "эхать" потому как другого вывода никакого (если не указан какой-нибудь ajax-вызов темплейта не будет))
 			{

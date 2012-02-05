@@ -7,8 +7,6 @@ require_once 'Mail/mime.php';
 
 function ajaxInsertionAdd() {
     
-	ini_set("display_errors","Off");
-	
     @session_start();
 
     try {
