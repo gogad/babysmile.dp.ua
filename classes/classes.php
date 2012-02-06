@@ -1038,7 +1038,7 @@ class current_page extends page
 	    if (array_key_exists($name,$this->additional_attr)) {
 	        return $this->additional_attr[$name];
 	    }
-	    throw new Exception("Page parameter $name does not exist");
+	    return parent::__get($name);
 	    
 	}
 	
