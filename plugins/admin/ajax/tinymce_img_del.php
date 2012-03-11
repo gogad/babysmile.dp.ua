@@ -1,8 +1,5 @@
 <?php
 try {
-	
-	$json = array();
-	
 	$objectDb = Admin_Core::getObjectDatabase();
 	$objectImgcontent = new Admin_Plugins_Imgcontent();
 //    ini_set("display_errors","Off");
@@ -16,15 +13,8 @@ try {
     @unlink($big_img_path);
     // удаляем запись в таблице
     $objectDb->deleteRecord('content_images',$id);
-    $error_msg = 'no error';
-    
-    $json['msg'] = $error_msg;
-    $json['id'] = $id;
-    
+    $error_msg = 'no error';                
+    echo json_encode(array('msg'=>$error_msg, 'id'=>$id));
 } catch (Exception $e) {
-	
-	$json['msg'] = "System error: {$e->getMessage()} in {$e->getFile()} at line {$e->getLine()}";
-    
+    echo json_encode(array('msg'=>"System error: {$e->getMessage()} in {$e->getFile()} at line {$e->getLine()}'"));
 }
-
-echo json_encode($json);

@@ -51,9 +51,8 @@ try {
         
     }
     
-    echo $error_msg;
+    echo json_encode(array('msg'=>$error_msg));
     
 } catch (Exception $e) {
-    echo "{ msg: 'System error: {$e->getMessage()} in {$e->getFile()} at line {$e->getLine()}' }";
+    echo json_encode(array('msg'=>"System error: {$e->getMessage()} in {$e->getFile()} at line {$e->getLine()}'"));
 }    			
-?>

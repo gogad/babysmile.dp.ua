@@ -3,7 +3,18 @@ tinyMCEPopup.requireLangPack();
 var ImgContentDialog = {
 	init : function() {
 		$(document).ready (function () {			
-					
+			
+			$('span.remoteImage').click(function() {
+				$('div.remoteImage').toggle();
+				if ($('div.remoteImage').is(':visible')) {
+					$('#useBigImg').removeAttr('checked');
+					$('#useBigImg').attr('disabled', 'disabled');
+					$('#bigimg-options').hide();
+				} else {
+					$('#useBigImg').removeAttr('disabled');
+				}
+			});
+			
 			// показ/скрытие опций уменьшения изображений
 			$("#useBigImg").click ( 
 				function () {
@@ -27,7 +38,20 @@ var ImgContentDialog = {
 					$(this).removeClass("not-active");
 					$(this).removeAttr("readonly");
 				}
-			);			
+			);
+			
+			$("div#bigimg-options input").keypress ( 
+				function () {
+					/*evt = (event) ? event : window.event
+					var charCode = (evt.which) ? evt.which : evt.keyCode
+					if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+						status = "This field accepts numbers only."
+						return false
+					}
+					status = ""
+					return true*/
+				}
+			);
 			
 			// обработка события click изображения (вставка в контент, удаление)
 			$("img").livequery("click", function () {
@@ -41,7 +65,6 @@ var ImgContentDialog = {
 						.find("img")
 						.each(
 							function () {
-								// преобразование src изображения
 								if (imgSrc==$(this).attr("src")) {
 									// удаляемое изображения найдено в контенте
 									isInSource = true;
@@ -76,17 +99,17 @@ var ImgContentDialog = {
 				// вставка в контент
 				if ($(this).hasClass("big-img")) {
 					var bigImgSrc = $(this).attr("name");
-					tinyMCEPopup.editor.execCommand('mceInsertContent', false, '<a target="_blank" href="'+bigImgSrc+'"><img src="'+imgSrc+'" /></a>');
+					tinyMCEPopup.editor.execCommand('mceInsertContent', false, '<a target="_blank" title="увеличить" rel="lytebox" href="'+bigImgSrc+'"><img src="'+imgSrc+'" /></a>');
 				} else {
 					tinyMCEPopup.editor.execCommand('mceReplaceContent', false, '<img src="'+imgSrc+'" />');
 				}
 			});
 			
 			// обработка загрузки файла
-			$("#upl_file").change(function () {
+			$("#upl_file").livequery("change", function () {
 				$("#doUpload").show();
 			});
-			$("#doUpload").click(function () {
+			$("#doUpload").livequery("click", function () {
 				$("#loading").ajaxStart (function () {
 					$("#upl_file").attr("value","");
 					$(this).show();
@@ -118,8 +141,9 @@ var ImgContentDialog = {
 							var name_attr = '';
 							if (data.big_img == 1) {
 								bigImgClass = ' big-img';
+								name_attr = ' name="'+data.big_img_path+'"';
 							}
-							$("#img-wrapper").append('<div id="img'+data.id+'"><img class="content-img'+bigImgClass+'"'+name_attr+' width="'+data.width+'" height="'+data.height+'" src="'+data.img_name+'" id="'+data.id+'" />');
+							$("#img-wrapper").append('<div id="img'+data.id+'"><img class="content-img'+bigImgClass+'"'+name_attr+' width="'+data.width+'" height="'+data.height+'" src="'+data.img_name+'" id="'+data.id+'" /></div>');
 							$("#doUpload").hide();
 						} else {
 							alert(data.msg);
@@ -129,6 +153,33 @@ var ImgContentDialog = {
 						alert(e);
 					}
 				});
+			});
+			
+			$('#doRemoteUpload').click(function() {
+				var form = $(this).parents('form');
+				if ($('input[name="url"]').val() && $('input[name="file_name"]').val()) {
+					var formData = form.serialize();
+					$('#doRemoteUpload').val('Загрузка...');
+					form.find('input').attr('disabled', 'disabled');
+					$.post(
+						'/ajax/tinymce_img_remote_upl?content_id='+$("#content_id").attr("value"),
+						formData,
+						function(data) {
+							if (data.isSuccess) {
+								$("#img-wrapper").append(
+									'<div id="img'+data.id+'"><img class="content-img" width="'+data.width+'" height="'+data.height+'" src="'+data.img_name+'" id="'+data.id+'" /></div>'
+								);
+								$('div.remoteImage').hide();
+								form.find('input:text').val('');
+							} else {
+								alert(data.message);
+							}
+							$('#doRemoteUpload').val('Загрузить');
+							form.find('input').removeAttr('disabled');
+						},
+						'json'
+					);
+				}
 			});
 			
 		}); // end domready

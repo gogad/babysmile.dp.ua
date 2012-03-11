@@ -26,35 +26,28 @@
 				$(tinyMCE.activeEditor.dom.getRoot())
 						.find("img")
 						.each( function () {
-							// преобразование src изображения
-							if (tinymce.isIE || tinymce.isOpera) {									
-								var contentImgSrc = $(this).attr("src");
-							} else {
-								var p = new Poly9.URLParser($(this).attr("src"));
-								var contentImgSrc = p.getPathname();								
-							}
-							if (src==contentImgSrc) {
+							if (src==$(this).attr("src")) {
 								// удаляем изображение из контента
 								tinyMCE.activeEditor.dom.remove($(this).get());
 							}
 						});
-				
 				// запрос на удаление изображения на сервере
-				$.getJSON('/ajax/tinymce_img_del',{ id: id },function(data, textStatus) {
+				$.post('/ajax/tinymce_img_del',{ id: id },onAjaxSuccess,"json");
+			}
+	
+			function onAjaxSuccess (data) {
 			
-					if (data.msg!='no error') {
-						alert(data.msg);
-					} else {
-						$("#img"+data.id).css("display","none");
-					}
-					isDeleteMode = false;
-					$("#delete").css("display","block");
-					$("#delete-msg").css("display","none");
-					$("#delete-cancel").css("display","none");
-					
-				});							
+				if (data.msg!='no error') {
+					alert(data.msg);
+				} else {
+					$("#img"+data.id).css("display","none");
+				}
+				isDeleteMode = false;
+				$("#delete").css("display","block");
+				$("#delete-msg").css("display","none");
+				$("#delete-cancel").css("display","none");
 				
-			}				
+			}
 			
 		}
 		
@@ -147,6 +140,9 @@
 		#actions {
 			clear:both;			
 		}
+		
+		div.remoteImage { display: none; }
+		span.remoteImage { border-bottom: 1px dotted black; cursor: pointer; }
 	</style>
 	
 </head>
@@ -168,6 +164,8 @@
 <div id="actions">
     <strong>Выбранное изображение:</strong> <div id="debug">Выберите файл для загрузки</div>
     <div>
+    	<input type="checkbox" name="useWatermark" id="useWatermark" checked="checked" />
+		<label for="useWatermark">выполнить наложение водяного знака на изображение</label><br/>
         <input type="checkbox" name="useBigImg" id="useBigImg" />
         <label for="useBigImg">использовать функцию полноразмерного просмотра</label>
         <div id="bigimg-options">
@@ -179,12 +177,16 @@
     
     <div id="loading"></div>
     <form name="form" action="" method="POST" enctype="multipart/form-data">
-		<input type="checkbox" name="useWatermark" id="useWatermark" checked="checked" />
-		<label for="useWatermark">выполнить наложение водяного знака на изображение</label>
         <input type="hidden" name="content_id" id="content_id" value="{/literal}{$smarty.get.content_id}{literal}" />
         <input type="hidden" name="MAX_FILE_SIZE" value="300000" />
         <input id="upl_file" type="file" size="45" name="upl_file" />
         <input id="doUpload" type="button" value="Выполнить загрузку изображения" />
+        или <span class="remoteImage">указать URL</span>
+        <div class="remoteImage">
+        	<input type="text" name="url" placeholder="URL" />
+        	<input type="text" name="file_name" placeholder="имя файла" />
+	        <input id="doRemoteUpload" type="button" value="Загрузить" />
+        </div>
     </form>
     
     <form onsubmit="ImgContentDialog.insert();return false;" action="#">

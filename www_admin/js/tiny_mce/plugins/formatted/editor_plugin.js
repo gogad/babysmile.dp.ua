@@ -219,12 +219,12 @@
 			
 			// Warning style
 			ed.addCommand('mceWarning', function() {
-				ed.execCommand('mceSetCSSClass',false,'warning');
+				ed.formatter.toggle('set-css-class-inline', { 'classname' : 'warning' });
 			});
 			
 			// Notice style
 			ed.addCommand('mceNotice', function() {
-				ed.execCommand('mceSetCSSClass',false,'notice');
+				ed.formatter.toggle('set-css-class-inline', { 'classname' : 'notice' });
 			});
 			
 			// Table cell style

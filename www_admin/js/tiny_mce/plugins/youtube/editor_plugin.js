@@ -1,15 +1,8 @@
-/**
- * $Id: editor_plugin_src.js 201 2007-02-12 15:56:56Z spocke $
- * http://admin.dnepr.info/jscripts/tiny_mce/plugins/csvupload
- * @author Andrey Garbuz
- * @copyright Copyright  2004-2008, Moxiecode Systems AB, All rights reserved.
- */
-
 (function() {
 	// Load plugin specific language pack
-	tinymce.PluginManager.requireLangPack('csvupload');
+	tinymce.PluginManager.requireLangPack('youtube');
 
-	tinymce.create('tinymce.plugins.CsvUploadPlugin', {
+	tinymce.create('tinymce.plugins.YoutubePlugin', {
 		/**
 		 * Initializes the plugin, this will be executed after the plugin has been created.
 		 * This call is done before the editor instance has finished it's initialization so use the onInit event
@@ -19,12 +12,11 @@
 		 * @param {string} url Absolute URL to where the plugin is located.
 		 */
 		init : function(ed, url) {
-			// Register the command so that it can be invoked by using tinyMCE.activeEditor.execCommand('mceExample');
-			ed.addCommand('mceCsvUpload', function() {
+			ed.addCommand('mceYoutubeInsert', function() {
 				ed.windowManager.open({					
 					file : url + '/dialog.htm',
-					width : 400,
-					height : 100,
+					width : 320,
+					height : 150,
 					inline : 1
 				}, {
 					plugin_url : url // Plugin absolute URL
@@ -32,15 +24,15 @@
 			});
 
 			// Register example button
-			ed.addButton('csvupload', {
-				title : 'csvupload.desc',
-				cmd : 'mceCsvUpload',
-				image : url + '/img/csvupload.gif'
+			ed.addButton('youtube', {
+				title : 'youtube.desc',
+				cmd : 'mceYoutubeInsert',
+				image : url + '/img/youtube.gif'
 			});
 
 			// Add a node change handler, selects the button in the UI when a image is selected
 			ed.onNodeChange.add(function(ed, cm, n) {
-				// ...
+				
 			});
 		},
 
@@ -66,14 +58,13 @@
 		 */
 		getInfo : function() {
 			return {
-				longname : 'CSV File Upload plugin',
+				longname : 'Insert youtube or other video code into page',
 				author : 'Andrey Garbuz',
-				infourl : 'http://wiki.moxiecode.com/index.php/TinyMCE:Plugins/CsvUpload',
 				version : "1.0"
 			};
 		}
 	});
 
 	// Register plugin
-	tinymce.PluginManager.add('csvupload', tinymce.plugins.CsvUploadPlugin);
+	tinymce.PluginManager.add('youtube', tinymce.plugins.YoutubePlugin);
 })();

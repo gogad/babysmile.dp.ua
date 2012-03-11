@@ -1,8 +1,5 @@
 <?php
 try {
-	
-	$json = array();
-	
 	$objectDb = Admin_Core::getObjectDatabase();
 	$objectImgcontent = new Admin_Plugins_Imgcontent();
     ini_set("display_errors","Off");
@@ -35,14 +32,15 @@ try {
                     // try to add record to table
                     if (!move_uploaded_file($tmp_name, $upload_dir)) {
                         throw new Exception("Файл не был загружен из-за системной ошибки. Не удается выполнить копирование по заданному пути: $upload_dir");
-                    }                    
-                    
-                    if ($_REQUEST['useWatermark']==1) {
+                    }
+
+                	if ($_REQUEST['useWatermark']==1) {
 	                    // наложение watermark
 	                    $watermark = new _Watermark();
 	                    $im = $watermark->drawWatermark($upload_dir);
 	                    $im->writeImages($upload_dir,true);
                     }
+                    
                     // all ok                    
                     $error_msg = 'no error';                
                     list($width,$height) = getimagesize($upload_dir);
@@ -61,13 +59,13 @@ try {
                         }
                         // устанавливаем права доступа на директорию
                         chmod($path,0775);
-                        $file = basename($upload_dir);                        
+                        $file = _Strings::pcgbasename($upload_dir);                        
                         if (!copy($upload_dir,$path.$file)) {
                             throw new Exception("Невозможно скопировать файл. Source: $upload_dir; Destination: $path".Admin_Plugins_Imgcontent::$PATH_TO_BIG_IMAGES."$file");
                         }
                         $thumb = new _Thumbs($upload_dir,$upload_dir);
-                        $thumb->setIndicatorImages('black',FRONT_SITE_PATH.'/i/thumbs/plus_b.gif');
-                        $thumb->setIndicatorImages('white',FRONT_SITE_PATH.'/i/thumbs/plus.gif');
+                        $thumb->setIndicatorImages('black',FRONT_SITE_PATH.SITE_SUBDIR.'/img/thumbs/plus_b.gif');
+                        $thumb->setIndicatorImages('white',FRONT_SITE_PATH.SITE_SUBDIR.'/img/thumbs/plus.gif');
                         // checking resize params
                         if (isset($_REQUEST['img-width'])) {
                             if ($_REQUEST['img-width']<$bigW) {
@@ -93,6 +91,8 @@ try {
                         list($width,$height) = $thumb->getSmallImageSize();
                         $thumb->saveResizedImage();
                         $big_img = 1;
+                        $bigImgPath = Admin_Plugins_Imgcontent::$PATH_TO_IMAGES.Admin_Plugins_Imgcontent::$PATH_TO_BIG_IMAGES
+                                    . $content_id.'/'.$name;
                     }
                     
                     // thumbnail size
@@ -133,13 +133,8 @@ try {
         
     }			
     
-    $json = array('msg'=>$error_msg,'img_name'=>$img_path,'id'=>$id,'width'=>$width,'height'=>$height,'big_img'=>$big_img);
-    
+    echo json_encode(array('msg'=>$error_msg, 'img_name'=>$img_path, 'id'=>$id, 'width'=>$width, 'height'=>$height, 'big_img'=>$big_img, 'big_img_path' => isset($bigImgPath) ? $bigImgPath : false));
 } catch (Exception $e) {
-	
     if (file_exists($upload_dir)) unlink($upload_dir);
-    $json['msg'] = $e->getMessage();
-    
+    echo json_encode(array('msg'=>$e->getMessage()));
 }
-
-echo json_encode($json);
