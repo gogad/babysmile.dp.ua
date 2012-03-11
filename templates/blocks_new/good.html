@@ -17,7 +17,7 @@
 			Производитель:  <a class="violet" title="Перейти к странице производителя" href="{$good->biz_url}">{$good->biz_name|escape}</a><br />
 			Цена:  {if $good->price_old}<span class="old_price" title="старая цена">{$good->price_old}</span> {/if}<span class="big">{$good->price|convert_currency}</span><br />
 			Срок доставки:  <span>{if $good->delivery_period}{$good->delivery_period}{else}1-3{/if} дн.</span><br />
-			Наличие:  <span>{if !$good->availability}уточняйте{else}есть{/if}</span>
+			Наличие:  <span>{if !$good->availability}нет в наличии{else}есть{/if}</span>
 			{if !$good->is_build}В стоимость товара сборка не входит. Cборка оговаривается отдельно{/if}
 			<div class="buy">
 				<a href="#" class="button-buy"><img src="/images/item_buy_bg.gif" alt="КУПИТЬ" width="232" height="78" /></a>

@@ -51,7 +51,7 @@ form#userInfo #btnSubmit { margin:10px 0; }
 	#header_submenu li.current a {color:#624199}
 	#header_submenu li.current a:hover {background-color:transparent; border:none; margin:1px}
 
-#header_subsubmenu {font-size:13px; margin:16px -7px 0 -7px; background-color:#ffebcd; padding:7px}
+#header_subsubmenu {font-size:13px; margin:4px -7px 0 -7px; background-color:#ffebcd; padding:7px}
 	#header_subsubmenu li {display:inline}
 	#header_subsubmenu li:first-child {background:none}
 	#header_subsubmenu a {display:inline-block; padding:2px 3px; color:#624199}
