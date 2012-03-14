@@ -9,4 +9,12 @@
     </ul>
     <div class="pic"><img src="/images/main_categories_image.jpg" id="src_img" alt="" width="515" height="300" /></div>
 </div>
+<div>
+    {assign var="aSplitedText" value=$page->getFirstParagraphFromContent($params)}
+	{if $aSplitedText.otherContent != ''}
+		<div style="display: none;" id="effect">
+		{$aSplitedText.otherContent}
+		</div><a href="#" onclick="return false;" id="desctoggle">Показать/скрыть полное описание</a>
+	{/if}
+</div>
 <!-- Main page categories END -->
