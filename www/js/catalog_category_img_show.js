@@ -5,9 +5,12 @@ $(document).ready(function(){
                 num = id.replace(/img_(\d+)/gi, '$1');
                 $('#src_img').attr('src', '/images/img_cat_eng/'+num+'.jpg');
             },
-            function() { 
-		 $('#src_img').attr('src', '/images/main_categories_image.jpg'); 
+           function() {}
+        );
+        $('#main_categories ul').hover( function() {},
+            function() {
+		 $('#src_img').attr('src', '/images/main_categories_image.jpg');
             }
-        );    
+  		);
 });
 
