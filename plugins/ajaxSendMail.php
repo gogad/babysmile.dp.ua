@@ -38,7 +38,10 @@ function ajaxSendMail($page)
 
 
 	}
-	else{$response['error'].="не все поля заполнены.";};
+	else{	header('HTTP/1.1 400 Bad request');
+		die();
+		
+	};
 
 
 	echo json_encode($response);
