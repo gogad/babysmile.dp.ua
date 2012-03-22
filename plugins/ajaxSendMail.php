@@ -15,10 +15,10 @@ function ajaxSendMail($page)
 		$mail = filter_var($_POST['email'], FILTER_VALIDATE_EMAIL);
 		$text = htmlspecialchars($_POST['mailText']);
 		$usname = htmlspecialchars($_POST['Usname']);
-		if(!$mail)$response['error'].= "неправильный емаил.";
-		if(!preg_match("/^[0-9]{10}$/",$ustel)) $response['error'].= "неправильный телефон.только 10 цифр.";
-    	if($text == "")$response['error'].="пустое поле сообщения.";
-    	if($usname == "")$response['error'].="пустое поле имени.";
+		if(!$mail)$response['error'].= "неправильный емаил. ";
+		if(!preg_match("/^[0-9]{10}$/",$ustel)) $response['error'].= "неправильный телефон.только 10 цифр. ";
+    	if($text == "")$response['error'].="пустое поле сообщения. ";
+    	if($usname == "")$response['error'].="пустое поле имени. ";
     	//if($ustel == "")$response['error'].="пустое поле телефона.";
 		/* Для отправки HTML-почты вы можете установить шапку Content-type. */
 		$headers= "MIME-Version: 1.0\r\n";
