@@ -15,8 +15,8 @@ function ajaxSendMail($page)
 		$mail = filter_var($_POST['email'], FILTER_VALIDATE_EMAIL);
 		$text = htmlspecialchars($_POST['mailText']);
 		$usname = htmlspecialchars($_POST['Usname']);
-		if(!$mail)$response['error'].= "Неправильный емаил. ";
-		if(!preg_match("/^[0-9]{10}$/",$ustel)) $response['error'].= "Неправильный телефон-только 10 цифр. ";
+		if(!$mail)$response['error'].= "Введите правильный E-mail. ";
+		if(!preg_match("/^[0-9]{10}$/",$ustel)) $response['error'].= "Введите корректный телефон. ";
     	if($text == "")$response['error'].="Пустое поле сообщения. ";
     	if($usname == "")$response['error'].="Пустое поле имени. ";
     	//if($ustel == "")$response['error'].="пустое поле телефона.";
@@ -40,7 +40,7 @@ function ajaxSendMail($page)
 	}
 	else{	header('HTTP/1.1 400 Bad request');
 		die();
-		
+
 	};
 
 
